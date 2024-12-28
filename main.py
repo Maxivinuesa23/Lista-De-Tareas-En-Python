@@ -1,4 +1,5 @@
 from datetime import date
+import inputs
 
 
 #!--------------------------------------------------FUNCIONES PARA INGRESAR VALORES--------------------------------------------------
@@ -65,7 +66,7 @@ def ingresar_dificultad():
 def obtener_dia_vencimiento():
     dia = int(input("Ingrese el día de vencimiento\n"))
 
-    while(dia < 1 and dia > 31):
+    while(dia < 1 or dia > 31):
         print("Ingrese un día valido.")
         dia = int(input("Ingrese el día de vencimiento\n"))
 
@@ -74,7 +75,7 @@ def obtener_dia_vencimiento():
 def obtener_mes_vencimiento():
     mes = int(input("Ingrese el mes de vencimiento\n"))
 
-    while (mes < 1 and mes > 12):
+    while (mes < 1 or mes > 12):
         print("Ingrese un mes valido.")
         mes = int(input("Ingrese el mes de vencimiento\n"))
     
@@ -171,6 +172,18 @@ def ver_tareas_terminadas():
             print("--------------------------------------")
             print("\n")
 
+
+#! ------------------------------------------------------------------------------------
+def menu_ver_tarea_especifica():
+    print("¿Desea ver los detalles de alguna tarea?")
+    print("Introduce el número para verla o 0 para volver")
+    indice = int(input(""))
+
+    if (indice == 0):
+        return
+    else:
+        ver_tarea_especifica(indice)
+
 def ver_tarea_especifica(indice):
 
     indice = indice - 1
@@ -192,20 +205,8 @@ def ver_tarea_especifica(indice):
         print("--------------------------------------")
         print("\n")
 
-
     except ValueError:
         print("Ingrese un valor valido.")
-
-def menu_ver_tarea_especifica():
-    print("¿Desea ver los detalles de alguna tarea?")
-    print("Introduce el número para verla o 0 para volver")
-    indice = int(input(""))
-
-    if (indice == 0):
-        return
-    else:
-        ver_tarea_especifica(indice)
-
 #! -------------------------------------------------- APARTADO PARA MODIFICAR TAREAS----------------------------------------------------------------
 
 def modificar_tarea():
@@ -285,6 +286,17 @@ def buscar_tarea():
     return bandera
 
 
+    #!--------------------------------------------------Apartado para borrar tareas--------------------------------------------------
+
+def borrar_tarea():
+    ver_tareas()
+    menu_ver_tarea_especifica()
+    print("Ingrese el número de tarea que desea borrar.")
+    indice = (int(input("")) - 1)
+
+    lista_de_tareas.pop(indice)
+
+
 
 
 #! -------------------------------------------------- APARTADO MENU PRINCIPAL (main) --------------------------------------------------
@@ -295,6 +307,7 @@ while True:
     print("[2] Buscar una tarea.")
     print("[3] Agregar una tarea.")
     print("[4] Modificar una tarea")
+    print("[5] Borrar una tarea")
     print("[0] Salir.")
     opc = int(input(""))
 
@@ -367,6 +380,9 @@ while True:
 
     elif (opc == 4):
         modificar_tarea()
+
+    elif (opc == 5):
+        borrar_tarea()
 
     elif (opc == 0):
         print("Gracias por utilizar la lista de tareas!")
