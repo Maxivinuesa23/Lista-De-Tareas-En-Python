@@ -1,4 +1,4 @@
-
+from datetime import date
 #! --------------------------------------------------FUNCIONES PARA INGRESAR VALORES--------------------------------------------------
 
 def ingresar_titulo():
@@ -55,3 +55,35 @@ def ingresar_dificultad():
         ingresar_dificultad()
 
     return estado
+
+#!-------------------------------------------------- Funciones para controlar fechas--------------------------------------------------
+def obtener_dia_vencimiento():
+    dia = int(input("Ingrese el día de vencimiento\n"))
+
+    while(dia < 1 or dia > 31):
+        print("Ingrese un día valido.")
+        dia = int(input("Ingrese el día de vencimiento\n"))
+
+    return dia
+
+def obtener_mes_vencimiento():
+    mes = int(input("Ingrese el mes de vencimiento\n"))
+
+    while (mes < 1 or mes > 12):
+        print("Ingrese un mes valido.")
+        mes = int(input("Ingrese el mes de vencimiento\n"))
+    
+    return mes
+
+def obtener_anio_vencimiento():
+    anio = int(input("Ingrese el año de vencimiento\n"))
+
+    while (anio < 2024):
+        print("Ingrese un año valido")
+        anio = int(input("Ingrese el año de vencimiento\n"))
+    
+    return anio
+
+def fecha_de_vencimiento(dia, mes, anio):
+    vencimiento = date(dia, mes, anio)
+    return vencimiento
